@@ -21,10 +21,10 @@
 
 	<h1>Add a post</h1>
 
-	<a href="/home">Dashboard</a>
+	<a href="/dashboard">Dashboard</a>
 
 	<div class="container">
-		<form:form action="/posts" modelAttribute="book" class="form" method="post"> <!-- form needs to be updated -->
+		<form:form action="/posts" modelAttribute="posts" class="form" method="post"> <!-- form needs to be updated -->
 		
 			<div class="form-row">
 				<form:errors path="title" class="error"/>
