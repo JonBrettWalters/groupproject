@@ -1,5 +1,7 @@
 package com.groupeight.bloglife.controllers;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -19,6 +21,7 @@ import com.groupeight.bloglife.services.PostServices;
 import com.groupeight.bloglife.services.UserServices;
 
 import com.groupeight.bloglife.models.LoginUser;
+import com.groupeight.bloglife.models.Post;
 import com.groupeight.bloglife.models.User;
 import com.groupeight.bloglife.repositories.UserRepository;
 
@@ -92,9 +95,11 @@ public class MainController
 	}
 
 	@PostMapping("/blogs/add")
-	public String add_blog()
+	public String add_blog(@Valid, @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description,
+    HttpSession session)
 	{
-
+        Post created_Post = postServ.createPost(Post);
+        return "dashboard.jsp";
 	}
 
 	@PostMapping("/blogs/{id}/edit")
