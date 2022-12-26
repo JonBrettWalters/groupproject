@@ -1,20 +1,17 @@
 package com.groupeight.bloglife.controllers;
 
-import java.util.*;
-
-import org.mindrot.jbcrypt.BCrypt;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.ui.Model;
-import org.springframework.ui.*;
 
-
-import org.springframework.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,9 +20,10 @@ import org.springframework.validation.BindingResult;
 import com.groupeight.bloglife.services.PostServices;
 import com.groupeight.bloglife.services.UserServices;
 
-import com.models.LoginUser;
-import com.authentication.models.User;
-import com.authentication.repositories.UserRepository;
+import com.groupeight.bloglife.models.LoginUser;
+import com.groupeight.bloglife.models.Post;
+import com.groupeight.bloglife.models.User;
+import com.groupeight.bloglife.repositories.UserRepository;
 
 @Controller
 public class MainController 
@@ -52,7 +50,7 @@ public class MainController
     public String register(@RequestParam(value="firstname") String firstname, @RequestParam(value="lastname") String lastname, @RequestParam(value="email")String email, @RequestParam(value="password")String password,
 	@ModelAttribute("User") User User, BindingResult result, Model model, HttpSession session) 
     {
-        String hashed = BCrypt.hashpw(User.getPassword(), BCrypt.gensalt());
+        User created_User = userServ.createUser(User, result);
 
         if(result.hasErrors()) 
         {
@@ -61,7 +59,7 @@ public class MainController
         }
         else
         {
-            HttpSession.setAttribute("User");
+            session.setAttribute("user_id", created_User.getId());
         }
         return "redirect:/dashboard";
     }
@@ -70,6 +68,8 @@ public class MainController
     @PostMapping("/login")
     public String login(@Valid @ModelAttribute("LoginUser") LoginUser LoginUser, BindingResult result, Model model, HttpSession session) 
     {
+        User created_User = userServ.login(LoginUser, result);
+        
         if(result.hasErrors()) 
         {
             model.addAttribute("LoginUser", new LoginUser());
@@ -77,7 +77,7 @@ public class MainController
         }
         else
         {
-            HttpSession.setAttribute("User");
+            session.setAttribute("user_id", created_User.getId() );
         }
         return "redirect:/dashboard";
     }
@@ -88,19 +88,21 @@ public class MainController
         
     }
 
-	@PostMapping("/blogs/x/view.jsp")
-	public String view_blog()
+	@PostMapping("/blogs/{id}/view")
+	public String view_blog(@PathVariable Long id)
 	{
-
+        return "life";
 	}
 
-	@PostMapping("/blogs/add.jsp")
-	public String add_blog()
+	@PostMapping("/blogs/add")
+	public String add_blog(@Valid, @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description,
+    HttpSession session)
 	{
-
+        Post created_Post = postServ.createPost(Post);
+        return "dashboard.jsp";
 	}
 
-	@PostMapping("/blogs/x/edit.jsp")
+	@PostMapping("/blogs/{id}/edit")
 	public String edit_blog()
 	{
 
