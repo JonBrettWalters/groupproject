@@ -23,7 +23,7 @@
 		
 		<h3>Books from everyone shelves:</h3>
 		<a href="/logout">logout</a>
-		<a href="/home">Dashboard</a>
+		<a href="/dashboard">Dashboard</a>
 		
 		<div class="container">
 			<h3><span style="color: red;"><c:out value="${post.user.title"/></span> 

@@ -24,10 +24,10 @@ public class UserServices {
 	public User createUser(User newUser, BindingResult result) {
 		Optional<User> checkUser = userRep.findByEmail(newUser.getEmail());
 		if(checkUser.isPresent()) {
-			result.rejectValue("email", "User email is already taken.");
+			result.rejectValue("email", "unique", "User email is already taken.");
 			return null;
 		} else if (newUser.getPassword() == newUser.getConfirm()) {
-			result.rejectValue("password", "Passwords must match");
+			result.rejectValue("password", "mismatch", "Passwords must match");
 			return null;
 		}
 		else {
@@ -39,11 +39,11 @@ public class UserServices {
 	public User login(LoginUser newLogin, BindingResult result) {
 		Optional<User> checkUser = userRep.findByEmail(newLogin.getEmail());
 		if(!checkUser.isPresent()) {
-			result.rejectValue("email", "User does not exist");
+			result.rejectValue("email", "missingEmail", "User does not exist");
 			return null;
 		}
 		else if (!BCrypt.checkpw(newLogin.getPassword(), checkUser.get().getPassword())){
-			result.rejectValue("email", "Email and Password do not match");
+			result.rejectValue("password", "matches", "Email and Password do not match");
 			return null;
 		}
 		else {

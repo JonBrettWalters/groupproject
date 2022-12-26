@@ -23,7 +23,7 @@
 		
 		
 		<a href="/logout">logout</a>
-		<a href="/addPage">+ Add to blog</a>
+		<a href="/blogs/add">+ Add to blog</a>
 		
 		<table class="table">
 		
@@ -33,12 +33,12 @@
 				<th>Date</th>
 				<th>remove/edit</th>
 			</tr>
-			<c:forEach var="book" items="${books}">
+			<c:forEach var="post" items="${posts}">
 			
 				<tr>
-					<td><a href="books/${post.id}"><c:out value="${post.title}"/></a></td>
+					<td><a href="/blogs/${post.id}/view"><c:out value="${post.title}"/></a></td>
 					<td><c:out value="${post.subtitle}"/></td>
-					<td><c:out value="${post.planneddate}"/></td>
+					<td><c:out value="${post.plannedDate}"/></td>
 					<td><c:out value="${post.user.userName}"/> | </td> <!-- delete and edit need to be updated -->
 				</tr>
 			</c:forEach>

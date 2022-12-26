@@ -1,16 +1,4 @@
 
-main
-java
-resources
-webapp
-WEB-INF
-addPage.jsp
-book.jsp
-editPage.jsp
-home.jsp
-index.jsp
-test
-target
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -34,10 +22,10 @@ target
 
 	<h1>Edit Post</h1>
 
-	<a href="/home">Dashboard</a>
+	<a href="/dashboard">Dashboard</a>
 
 	<div class="container">
-		<form:form action="/posts/${post.id}" modelAttribute="post" class="form" method="post"> <!-- form needs to be updated -->
+		<form:form action="/blogs/${post.id}/edit" modelAttribute="post" class="form" method="post"> <!-- form needs to be updated -->
 			<input type="hidden" name="_method" value="put"/>
 		
 			<div class="form-row">
