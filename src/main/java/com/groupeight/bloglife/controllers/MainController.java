@@ -43,7 +43,7 @@ public class MainController
     {
         model.addAttribute("User", new User());
         model.addAttribute("LoginUser", new LoginUser());
-        return "index.jsp";
+        return "index";
     }
     
     @PostMapping("/register")
@@ -55,7 +55,7 @@ public class MainController
         if(result.hasErrors()) 
         {
             model.addAttribute("LoginUser", new LoginUser());
-            return "index.jsp";
+            return "index";
         }
         else
         {
@@ -73,7 +73,7 @@ public class MainController
         if(result.hasErrors()) 
         {
             model.addAttribute("LoginUser", new LoginUser());
-            return "index.jsp";
+            return "index";
         }
         else
         {
@@ -91,22 +91,36 @@ public class MainController
 	@PostMapping("/blogs/{id}/view")
 	public String view_blog(@PathVariable Long id)
 	{
-        return "life";
+        Post viewPost = postServ.findPost(id);
+    //need to check and see if "view" is correct?
+        return "view";
 	}
 
 	@PostMapping("/blogs/add")
+    //assuming that some validation will be added into the PostServices, leaving this in there. 
 	public String add_blog(@Valid, @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description,
     HttpSession session)
 	{
         Post created_Post = postServ.createPost(Post);
-        return "dashboard.jsp";
+        return "dashboard";
 	}
 
 	@PostMapping("/blogs/{id}/edit")
-	public String edit_blog()
+	public String edit_blog(@PathVariable Long id)
 	{
+        Post editPost = postServ.findPost(id);
+        //need to check and see if "view" is correct?
+        return "edit";
+    }
 
-	}
+    @PostMapping("/blogs/{id}/submit")
+    //again assuming some validation will be added into the PostServices
+    public String submit_update(@Valid, @PathVariable Long id, @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, 
+    @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description, HttpSession session)
+    {
+        Post edited_Post = postServ.updatePost(Post);
+        return "dashboard";
+    }
 
 }
 
