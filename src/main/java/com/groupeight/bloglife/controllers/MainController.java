@@ -1,6 +1,7 @@
 package com.groupeight.bloglife.controllers;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -33,11 +34,6 @@ public class MainController
 	@Autowired
 	UserServices userServ;
 	
-	//@RequestMapping("/") 
-	//public String logandreg() {
-	//	return "";
-	//}
-
 	@GetMapping("/")
     public String index(Model model) 
     {
@@ -61,7 +57,7 @@ public class MainController
         {
             session.setAttribute("user_id", created_User.getId());
         }
-        return "redirect:/dashboard";
+        return "redirect:/home";
     }
 
     
@@ -79,13 +75,16 @@ public class MainController
         {
             session.setAttribute("user_id", created_User.getId() );
         }
-        return "redirect:/dashboard";
+        return "redirect:/home";
     }
     
-    @PostMapping("/dashboard")
+    @GetMapping("/dashboard")
 	public String dashboard()
     {
-        
+    //think we need another service which returns all post for that given user? 
+    //for now, calling 'all posts'
+        List<Post> dashboard = postServ.allPosts();
+        return "home";
     }
 
 	@PostMapping("/blogs/{id}/view")
@@ -93,7 +92,7 @@ public class MainController
 	{
         Post viewPost = postServ.findPost(id);
     //need to check and see if "view" is correct?
-        return "view";
+        return "view_blog";
 	}
 
 	@PostMapping("/blogs/add")
@@ -102,25 +101,25 @@ public class MainController
     HttpSession session)
 	{
         Post created_Post = postServ.createPost(Post);
-        return "dashboard";
+        return "home";
 	}
-
-	@PostMapping("/blogs/{id}/edit")
-	public String edit_blog(@PathVariable Long id)
-	{
-        Post editPost = postServ.findPost(id);
-        //need to check and see if "view" is correct?
-        return "edit";
-    }
-
+    
     @PostMapping("/blogs/{id}/submit")
     //again assuming some validation will be added into the PostServices
     public String submit_update(@Valid, @PathVariable Long id, @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, 
     @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description, HttpSession session)
     {
         Post edited_Post = postServ.updatePost(Post);
-        return "dashboard";
+        return "home";
     }
 
-}
+	@PostMapping("/blogs/{id}/edit")
+	public String edit_blog(@PathVariable Long id)
+	{
+        Post editPost = postServ.findPost(id);
+        //need to check and see if "view" is correct?
+        return "edit_blog";
+    }
 
+
+}
