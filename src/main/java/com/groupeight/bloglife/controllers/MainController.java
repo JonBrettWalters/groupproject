@@ -2,6 +2,7 @@ package com.groupeight.bloglife.controllers;
 
 import java.util.Date;
 import java.util.List;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpSession;
@@ -79,15 +80,10 @@ public class MainController
         return "redirect:/home";
     }
     
-    @GetMapping("/dashboard")
-	public String dashboard(LoginUser LoginUser)
+    @PostMapping("/dashboard")
+	public String dashboard()
     {
-    //think we need another service which returns all post for that given user? 
-    //for now, calling 'all posts'
-
-    User user_id = UserRepository.findById(id);
-        List<Post> dashboard = postServ.allPosts(user_id);
-        return "home";
+        
     }
 
 	@PostMapping("/blogs/{id}/view")
@@ -106,6 +102,14 @@ public class MainController
         Post created_Post = postServ.createPost(Post);
         return "home";
 	}
+
+	@PostMapping("/blogs/{id}/edit")
+	public String edit_blog(@PathVariable Long id)
+	{
+        Post editPost = postServ.findPost(id);
+        //need to check and see if "view" is correct?
+        return "edit";
+    }
 
     @PostMapping("/blogs/{id}/submit")
     //again assuming some validation will be added into the PostServices
@@ -126,4 +130,3 @@ public class MainController
 
 
 }
-
