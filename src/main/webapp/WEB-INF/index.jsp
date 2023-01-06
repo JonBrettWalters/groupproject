@@ -16,7 +16,7 @@
 
 
 
-<form:form action="/register" method="post" modelAttribute="newUser">
+<form:form action="/register" method="post" modelAttribute="user">
 
 	<table>
 		<thead>
@@ -26,10 +26,17 @@
 	    </thead>
 	    <thead>
 	    	<tr>
-	            <td class="float-left">Name:</td>
+	            <td class="float-left">First Name:</td>
 	            <td class="float-left">
-	            	<form:errors path="username" class="text-danger"/>
-					<form:input class="input" path="username"/>
+	            	<form:errors path="firstName" class="text-danger"/>
+					<form:input class="input" path="firstName"/>
+	            </td>
+	        </tr>
+			<tr>
+	            <td class="float-left">Last Name:</td>
+	            <td class="float-left">
+	            	<form:errors path="lastName" class="text-danger"/>
+					<form:input class="input" path="lastName"/>
 	            </td>
 	        </tr>
 	        <tr>
@@ -60,7 +67,7 @@
 	</table>
 </form:form>
 <hr>
-<form:form action="/login" method="post" modelAttribute="newLogin">
+<form:form action="/login" method="post" modelAttribute="loginUser">
 
 	<table>
 		<thead>
