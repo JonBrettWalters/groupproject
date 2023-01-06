@@ -44,7 +44,7 @@ public class MainController
     }
     
     @PostMapping("/register")
-    public String register(@RequestParam(value="firstName") String firstName, @RequestParam(value="lastName") String lastName, @RequestParam(value="email")String email, @RequestParam(value="password")String password,
+    public String register(@Valid @RequestParam(value="firstName") String firstName, @RequestParam(value="lastName") String lastName, @RequestParam(value="email")String email, @RequestParam(value="password")String password,
 	@ModelAttribute("User") User User, BindingResult result, Model model, HttpSession session) 
     {
         User created_User = userServ.createUser(User, result);
