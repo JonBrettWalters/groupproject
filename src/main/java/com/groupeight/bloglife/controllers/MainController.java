@@ -1,8 +1,6 @@
 package com.groupeight.bloglife.controllers;
 
 import java.util.Date;
-import java.util.List;
-import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpSession;
@@ -81,16 +79,16 @@ public class MainController
     }
     
     @PostMapping("/dashboard")
-	public String dashboard()
+	public String dashboard(HttpSession session)
     {
-        
+        Long userID = (Long) session.getAttribute("user_id");
+        User foundUser = userServ.findUser(userID);
     }
 
 	@PostMapping("/blogs/{id}/view")
 	public String view_blog(@PathVariable Long id)
 	{
         Post viewPost = postServ.findPost(id);
-    //need to check and see if "view" is correct?
         return "view_blog";
 	}
 
@@ -102,14 +100,6 @@ public class MainController
         Post created_Post = postServ.createPost(Post);
         return "home";
 	}
-
-	@PostMapping("/blogs/{id}/edit")
-	public String edit_blog(@PathVariable Long id)
-	{
-        Post editPost = postServ.findPost(id);
-        //need to check and see if "view" is correct?
-        return "edit";
-    }
 
     @PostMapping("/blogs/{id}/submit")
     //again assuming some validation will be added into the PostServices
