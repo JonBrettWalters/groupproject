@@ -16,7 +16,7 @@
 
 
 
-<form:form action="/register" method="post" modelAttribute="user">
+<form:form action="/register" method="post" modelAttribute="User">
 
 	<table>
 		<thead>
@@ -67,7 +67,7 @@
 	</table>
 </form:form>
 <hr>
-<form:form action="/login" method="post" modelAttribute="loginUser">
+<form:form action="/login" method="post" modelAttribute="LoginUser">
 
 	<table>
 		<thead>
