@@ -29,7 +29,7 @@
 			<input type="hidden" name="_method" value="put"/>
 		
 			<div class="form-row">
-			 	<form:errors path="title" class="error"/>
+				<form:errors path="title" class="error"/>
 				<form:label for="title" path="title">Title:</form:label>
 				<form:input type="text" path="title" class="form-control"/>
 			</div>
