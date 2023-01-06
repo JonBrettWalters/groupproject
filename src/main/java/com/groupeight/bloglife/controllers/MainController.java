@@ -83,6 +83,7 @@ public class MainController
     {
         Long userID = (Long) session.getAttribute("user_id");
         User foundUser = userServ.findUser(userID);
+        return "dashboard";
     }
 
 	@PostMapping("/blogs/{id}/view")
@@ -94,7 +95,7 @@ public class MainController
 
 	@PostMapping("/blogs/add")
     //assuming that some validation will be added into the PostServices, leaving this in there. 
-	public String add_blog(@Valid, @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description,
+	public String add_blog(@Valid @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description,
     HttpSession session)
 	{
         Post created_Post = postServ.createPost(Post);
@@ -103,7 +104,7 @@ public class MainController
 
     @PostMapping("/blogs/{id}/submit")
     //again assuming some validation will be added into the PostServices
-    public String submit_update(@Valid, @PathVariable Long id, @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, 
+    public String submit_update(@Valid @PathVariable Long id, @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, 
     @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description, HttpSession session)
     {
         Post edited_Post = postServ.updatePost(Post);
