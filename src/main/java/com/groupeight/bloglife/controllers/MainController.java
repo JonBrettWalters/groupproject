@@ -100,7 +100,7 @@ public class MainController
     HttpSession session)
 	{
         Post created_Post = postServ.createPost(Post);
-        return "home.jsp";
+        return "dashboard.jsp";
 	}
 
     @PostMapping("/blogs/{id}/submit")
@@ -109,7 +109,7 @@ public class MainController
     @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description, HttpSession session)
     {
         Post edited_Post = postServ.updatePost(Post);
-        return "home.jsp";
+        return "dashboard.jsp";
     }
 
 	@PostMapping("/blogs/{id}/edit")
@@ -124,7 +124,7 @@ public class MainController
     public String delete_blog(@PathVariable Long id)
     {
         postServ.deletePost(id);
-        return "home.jsp";
+        return "dashboard.jsp";
     }
 
 
