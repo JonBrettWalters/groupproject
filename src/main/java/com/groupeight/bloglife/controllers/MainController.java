@@ -40,7 +40,7 @@ public class MainController
     {
         model.addAttribute("User", new User());
         model.addAttribute("LoginUser", new LoginUser());
-        return "index";
+        return "index.jsp";
     }
     
     @PostMapping("/register")
@@ -52,13 +52,13 @@ public class MainController
         if(result.hasErrors()) 
         {
             model.addAttribute("LoginUser", new LoginUser());
-            return "index";
+            return "index.jsp";
         }
         else
         {
             session.setAttribute("user_id", created_User.getId());
         }
-        return "redirect:/home";
+        return "redirect:/home.jsp";
     }
 
     
@@ -70,13 +70,13 @@ public class MainController
         if(result.hasErrors()) 
         {
             model.addAttribute("LoginUser", new LoginUser());
-            return "index";
+            return "index.jsp";
         }
         else
         {
             session.setAttribute("user_id", created_User.getId() );
         }
-        return "redirect:/home";
+        return "redirect:/home.jsp";
     }
     
     @PostMapping("/dashboard")
@@ -84,14 +84,14 @@ public class MainController
     {
         Long userID = (Long) session.getAttribute("user_id");
         User foundUser = userServ.findUser(userID);
-        return "dashboard";
+        return "dashboard.jsp";
     }
 
 	@PostMapping("/blogs/{id}/view")
 	public String view_blog(@PathVariable Long id)
 	{
         Post viewPost = postServ.findPost(id);
-        return "view_blog";
+        return "view_blog.jsp";
 	}
 
 	@PostMapping("/blogs/add")
@@ -100,7 +100,7 @@ public class MainController
     HttpSession session)
 	{
         Post created_Post = postServ.createPost(Post);
-        return "home";
+        return "home.jsp";
 	}
 
     @PostMapping("/blogs/{id}/submit")
@@ -109,7 +109,7 @@ public class MainController
     @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description, HttpSession session)
     {
         Post edited_Post = postServ.updatePost(Post);
-        return "home";
+        return "home.jsp";
     }
 
 	@PostMapping("/blogs/{id}/edit")
@@ -117,14 +117,14 @@ public class MainController
 	{
         Post editPost = postServ.findPost(id);
         //need to check and see if "view" is correct?
-        return "edit_blog";
+        return "edit_blog.jsp";
     }
 
     @DeleteMapping("/blogs/{id}/delete")
     public String delete_blog(@PathVariable Long id)
     {
         postServ.deletePost(id);
-        return "home";
+        return "home.jsp";
     }
 
 
