@@ -11,5 +11,6 @@ import com.groupeight.bloglife.models.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>{
 	List<User> findAll();
+	List<User> findAllById();
 	Optional<User> findByEmail(String email);
 }

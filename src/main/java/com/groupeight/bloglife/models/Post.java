@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -25,15 +26,17 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	@NotNull
-	@Size(min = 5, max = 200)
+	@NotEmpty
+	@Size(min = 5, max = 200, message="Title must be between 5 and 200 characters.")
     private String title;
 	@NotNull
-	@Size(min = 5, max = 200)
+	@Size(min = 5, max = 200, message="Subtitle must be between 5 and 200 characters.")
     private String subtitle;
+	@NotNull(message="Must be filled in.")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date plannedDate;
     @NotNull
-	@Size(min = 5, max = 200)
+	@Size(min = 5, max = 200, message="Description must be between 5 and 200 characters.")
     private String description;
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
