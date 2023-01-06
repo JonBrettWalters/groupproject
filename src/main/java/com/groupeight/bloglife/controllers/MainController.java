@@ -79,7 +79,7 @@ public class MainController
         return "redirect:/dashboard";
     }
     
-    @PostMapping("/dashboard")
+    @GetMapping("/dashboard")
 	public String dashboard(HttpSession session)
     {
         Long userID = (Long) session.getAttribute("user_id");
