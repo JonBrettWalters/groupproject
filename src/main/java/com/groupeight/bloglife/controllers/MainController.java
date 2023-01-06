@@ -58,7 +58,7 @@ public class MainController
         {
             session.setAttribute("user_id", created_User.getId());
         }
-        return "redirect:/home";
+        return "redirect:/dashboard";
     }
 
     
@@ -76,7 +76,7 @@ public class MainController
         {
             session.setAttribute("user_id", created_User.getId() );
         }
-        return "redirect:/home";
+        return "redirect:/dashboard";
     }
     
     @PostMapping("/dashboard")
