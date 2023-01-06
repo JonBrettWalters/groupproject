@@ -39,7 +39,7 @@
 					<td><a href="/blogs/${post.id}/view"><c:out value="${post.title}"/></a></td>
 					<td><c:out value="${post.subtitle}"/></td>
 					<td><c:out value="${post.plannedDate}"/></td>
-					<td><c:out value="${post.user.userName}"/> | </td> <!-- delete and edit need to be updated -->
+					<td> <a href="/blogs/{post.id}/edit"> edit </a> | <a href="/blogs/${post.id}/delete"> delete</a>  </td> <!-- delete and edit need to be updated -->
 				</tr>
 			</c:forEach>
 		

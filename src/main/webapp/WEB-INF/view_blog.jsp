@@ -21,7 +21,6 @@
 	<div class="container">
 		<h1>Welcome, <c:out value="${user.firstName}"/></h1>
 		
-		<h3>Books from everyone shelves:</h3>
 		<a href="/logout">logout</a>
 		<a href="/dashboard">Dashboard</a>
 		
