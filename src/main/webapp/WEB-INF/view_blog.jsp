@@ -19,20 +19,19 @@
 <body>
 
 	<div class="container">
-		<h1>Welcome, <c:out value="${user.firstName}"/></h1>
 		
 		<a href="/logout">logout</a>
 		<a href="/dashboard">Dashboard</a>
 		
 		<div class="container">
-			<h3><span style="color: red;"><c:out value="${post.user.title"/></span> 
-			<span style="color: rebeccapurple;"><c:out value="${post.subtitle}"/></span> by 
-			<span style="color: darkgreen;"><c:out value="${post.plannedDate}"/></span></h3>
+			<h3><span style="color: red;"><c:out value="${viewPost.title}"/></span> 
+			<span style="color: rebeccapurple;"><c:out value="${viewPost.subtitle}"/></span> by 
+			<span style="color: darkgreen;"><c:out value="${viewPost.plannedDate}"/></span></h3>
 		</div>
 		
 		<div class="container">
 			
-			<p><c:out value="${post.description}"/></p>
+			<p><c:out value="${viewPost.description}"/></p>
 			<hr />
 		
 		</div>
