@@ -33,7 +33,7 @@
 				<th>Date</th>
 				<th>remove/edit</th>
 			</tr>
-			<c:forEach var="post" items="${founduser.posts}">
+			<c:forEach var="post" items="${foundUser.posts}">
 			
 				<tr>
 					<td><a href="/blogs/${post.id}/view"><c:out value="${post.title}"/></a></td>
