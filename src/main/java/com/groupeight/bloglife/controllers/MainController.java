@@ -95,7 +95,7 @@ public class MainController
 	}
 
 	@GetMapping("/blogs/add")
-    public String create_blog(HttpSession session)
+    public String create_blog(HttpSession session, Model model, @ModelAttribute("post") Post post)
     {
         return "new_blog.jsp";
     }
