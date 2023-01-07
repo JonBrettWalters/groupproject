@@ -32,7 +32,7 @@
 		
 		<div class="container">
 			
-			<p><c:out value="${post.description}"/></p>
+			<p><c:out value="${viewPost.description}"/></p>
 			<hr />
 		
 		</div>
