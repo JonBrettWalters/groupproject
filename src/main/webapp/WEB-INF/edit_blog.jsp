@@ -25,30 +25,30 @@
 	<a href="/dashboard">Dashboard</a>
 
 	<div class="container">
-		<form:form action="/blogs/${post.id}/submit" modelAttribute="post" class="form" method="post"> <!-- form needs to be updated -->
+		<form:form action="/blogs/${editPost.id}/submit" modelAttribute="post" class="form" method="post"> <!-- form needs to be updated -->
 			<input type="hidden" name="_method" value="put"/>
 		
 			<div class="form-row">
 				<form:errors path="title" class="error"/>
 				<form:label for="title" path="title">Title:</form:label>
-				<form:input type="text" path="title" class="form-control"/>
+				<form:input type="text" path="title" class="form-control" value ="title"/>
 			</div>
 			
 			<div class="form-row">
 				<form:errors path="subtitle" class="error"/>
 				<form:label for="subtitle" path="subtitle">Subtitle:</form:label>
-				<form:input type="text" path="subtitle" class="form-control"/>
+				<form:input type="text" path="subtitle" class="form-control" value="subtitle"/>
 			</div>
 			<div class="form-row">
 				<form:errors path="plannedDate" class="error"/>
 				<form:label for="plannedDate" path="plannedDate">Planned Date:</form:label>
-				<form:input type="date" min="2018-01-01" max="2199-12-31" path="plannedDate" class="form-control"/>
+				<form:input type="date" min="2018-01-01" max="2199-12-31" path="plannedDate" class="form-control" value="plannedDate"/>
 			</div>
 			
 			<div class="form-row">
 				<form:errors path="description" class="error"/>
 				<form:label for="description" path="description">Description:</form:label>
-				<form:textarea path="Description" class="form-control"/>
+				<form:textarea path="Description" class="form-control" value="description"/>
 			</div>
 			
 			<div class="form-row">
