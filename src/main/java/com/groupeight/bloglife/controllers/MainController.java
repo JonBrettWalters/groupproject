@@ -2,7 +2,6 @@ package com.groupeight.bloglife.controllers;
 
 import java.util.Date;
 
-import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -10,7 +9,6 @@ import org.springframework.ui.Model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +23,6 @@ import com.groupeight.bloglife.services.UserServices;
 import com.groupeight.bloglife.models.LoginUser;
 import com.groupeight.bloglife.models.Post;
 import com.groupeight.bloglife.models.User;
-import com.groupeight.bloglife.repositories.UserRepository;
 
 @Controller
 public class MainController 
@@ -88,17 +85,19 @@ public class MainController
     }
     
     @GetMapping("/dashboard")
-	public String dashboard(HttpSession session)
+	public String dashboard(HttpSession session, Model model)
     {
         Long userID = (Long) session.getAttribute("user_id");
         User foundUser = userServ.findUser(userID);
+        model.addAttribute("foundUser", foundUser);
         return "dashboard.jsp";
     }
 
 	@GetMapping("/blogs/{id}/view")
-	public String view_blog(@PathVariable Long id)
+	public String view_blog(@PathVariable Long id, Model model)
 	{
         Post viewPost = postServ.findPost(id);
+        model.addAttribute("viewPost", viewPost);
         return "view_blog.jsp";
 	}
 
@@ -111,28 +110,30 @@ public class MainController
     @PostMapping("/blogs/submit")
     //assuming that some validation will be added into the PostServices, leaving this in there. 
 	public String add_blog(@Valid @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description,
-    HttpSession session)
+    HttpSession session, Model model)
 	{
         Long userID = (Long) session.getAttribute("user_id");
         User foundUser = userServ.findUser(userID);
         Post created_Post = postServ.createPost(Post, foundUser);
+        model.addAttribute("created_Post", created_Post);
         return "dashboard.jsp";
 	}
 
     @PostMapping("/blogs/{id}/submit")
     //again assuming some validation will be added into the PostServices
     public String submit_update(@Valid @PathVariable Long id, @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, 
-    @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description, HttpSession session)
+    @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description, HttpSession session, Model model)
     {
         Post edited_Post = postServ.updatePost(Post);
+        model.addAttribute("edited_Post", edited_Post);
         return "dashboard.jsp";
     }
 
 	@GetMapping("/blogs/{id}/edit")
-	public String edit_blog(@PathVariable Long id)
+	public String edit_blog(@PathVariable Long id, Model model)
 	{
         Post editPost = postServ.findPost(id);
-        //need to check and see if "view" is correct?
+        model.addAttribute("editPost", editPost);
         return "edit_blog.jsp";
     }
 
