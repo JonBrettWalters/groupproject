@@ -54,6 +54,7 @@ public class MainController
         else
         {
             session.setAttribute("user_id", created_User.getId());
+            session.setAttribute(firstName, created_User);
         }
         return "redirect:/dashboard";
     }
@@ -72,6 +73,7 @@ public class MainController
         else
         {
             session.setAttribute("user_id", created_User.getId() );
+            session.setAttribute("firstName", created_User);
         }
         return "redirect:/dashboard";
     }

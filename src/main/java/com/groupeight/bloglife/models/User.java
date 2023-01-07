@@ -126,5 +126,23 @@ public class User {
 	public void setConfirm(String confirm) {
 		this.confirm = confirm;
 	}
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+	public List<Post> getPosts() {
+		return posts;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
     
 }
