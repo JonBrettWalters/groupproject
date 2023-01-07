@@ -25,9 +25,9 @@
 		<a href="/dashboard">Dashboard</a>
 		
 		<div class="container">
-			<h3><span style="color: red;"><c:out value="${user.post.title"/></span> 
-			<span style="color: rebeccapurple;"><c:out value="${post.subtitle}"/></span> by 
-			<span style="color: darkgreen;"><c:out value="${post.plannedDate}"/></span></h3>
+			<h3><span style="color: red;"><c:out value="${viewPost.title}"/></span> 
+			<span style="color: rebeccapurple;"><c:out value="${viewPost.subtitle}"/></span> by 
+			<span style="color: darkgreen;"><c:out value="${viewPost.plannedDate}"/></span></h3>
 		</div>
 		
 		<div class="container">
