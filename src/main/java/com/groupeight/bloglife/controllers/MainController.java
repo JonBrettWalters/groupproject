@@ -114,7 +114,8 @@ public class MainController
     HttpSession session)
 	{
         Long userID = (Long) session.getAttribute("user_id");
-        Post created_Post = postServ.createPost(Post, userID);
+        User foundUser = userServ.findUser(userID);
+        Post created_Post = postServ.createPost(Post, foundUser);
         return "dashboard.jsp";
 	}
 
