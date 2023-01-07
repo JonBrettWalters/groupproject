@@ -118,7 +118,7 @@ public class MainController
         User foundUser = userServ.findUser(userID);
         Post created_Post = postServ.createPost(Post, foundUser);
         model.addAttribute("created_Post", created_Post);
-        return "dashboard.jsp";
+        return "redirect:/dashboard";
 	}
 
     @PostMapping("/blogs/{id}/submit")
@@ -128,7 +128,7 @@ public class MainController
     {
         Post edited_Post = postServ.updatePost(Post);
         model.addAttribute("edited_Post", edited_Post);
-        return "dashboard.jsp";
+        return "redirect:/dashboard";
     }
 
 	@GetMapping("/blogs/{id}/edit")
