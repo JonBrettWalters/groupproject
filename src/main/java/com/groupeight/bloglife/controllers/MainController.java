@@ -143,7 +143,7 @@ public class MainController
     public String delete_blog(@PathVariable Long id)
     {
         postServ.deletePost(id);
-        return "dashboard.jsp";
+        return "redirect:/dashboard";
     }
 
 
