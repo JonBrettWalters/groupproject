@@ -25,7 +25,7 @@
 	<a href="/dashboard">Dashboard</a>
 
 	<div class="container">
-		<form:form action="/blogs/${post.id}/edit" modelAttribute="post" class="form" method="post"> <!-- form needs to be updated -->
+		<form:form action="/blogs/${post.id}/submit" modelAttribute="Post" class="form" method="post"> <!-- form needs to be updated -->
 			<input type="hidden" name="_method" value="put"/>
 		
 			<div class="form-row">
