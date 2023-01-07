@@ -78,6 +78,14 @@ public class MainController
         }
         return "redirect:/dashboard";
     }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session, Model model) 
+    {
+        session.invalidate();
+        if(model.containsAttribute("counter")) model.asMap().remove("counter");
+        return "redirect:/index";
+    }
     
     @GetMapping("/dashboard")
 	public String dashboard(HttpSession session)
