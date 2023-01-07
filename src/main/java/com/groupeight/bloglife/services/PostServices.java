@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.groupeight.bloglife.models.Post;
+import com.groupeight.bloglife.models.User;
 import com.groupeight.bloglife.repositories.PostRepository;
 
 @Service
@@ -19,6 +20,10 @@ public class PostServices {
 		return postRep.findAll();
 	}
 	public Post createPost(Post post) {
+		return postRep.save(post);
+	}
+	public Post createPost(Post post, User user) {
+		post.setUser(user);
 		return postRep.save(post);
 	}
 	public Post updatePost(Post post) {
