@@ -26,7 +26,6 @@
 
 	<div class="container">
 		<form:form action="/blogs/${editPost.id}/submit" modelAttribute="editPost" class="form" method="post"> <!-- form needs to be updated -->
-			<input type="hidden" name="_method" value="put"/>
 		
 			<div class="form-row">
 				<form:errors path="title" class="error"/>
