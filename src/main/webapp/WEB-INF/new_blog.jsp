@@ -24,7 +24,7 @@
 	<a href="/dashboard">Dashboard</a>
 
 	<div class="container">
-		<form:form action="/blogs/add" modelAttribute="Post" class="form" method="post"> <!-- form needs to be updated -->
+		<form:form action="/blogs/add" modelAttribute="post" class="form" method="post"> <!-- form needs to be updated -->
 		
 			<div class="form-row">
 				<form:errors path="title" class="error"/>
