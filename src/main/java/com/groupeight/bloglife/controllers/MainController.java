@@ -113,7 +113,9 @@ public class MainController
 	public String add_blog(@Valid @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description,
     HttpSession session)
 	{
-        Post created_Post = postServ.createPost(Post);
+        Long userID = (Long) session.getAttribute("user_id");
+        User foundUser = userServ.findUser(userID);
+        Post created_Post = postServ.createPost(Post, foundUser);
         return "dashboard.jsp";
 	}
 
@@ -126,7 +128,7 @@ public class MainController
         return "dashboard.jsp";
     }
 
-	@PostMapping("/blogs/{id}/edit")
+	@GetMapping("/blogs/{id}/edit")
 	public String edit_blog(@PathVariable Long id)
 	{
         Post editPost = postServ.findPost(id);
