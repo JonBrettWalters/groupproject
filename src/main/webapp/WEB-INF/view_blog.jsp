@@ -25,7 +25,7 @@
 		<a href="/dashboard">Dashboard</a>
 		
 		<div class="container">
-			<h3><span style="color: red;"><c:out value="${post.user.title"/></span> 
+			<h3><span style="color: red;"><c:out value="${user.post.title"/></span> 
 			<span style="color: rebeccapurple;"><c:out value="${post.subtitle}"/></span> by 
 			<span style="color: darkgreen;"><c:out value="${post.plannedDate}"/></span></h3>
 		</div>
