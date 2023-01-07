@@ -87,14 +87,20 @@ public class MainController
         return "dashboard.jsp";
     }
 
-	@PostMapping("/blogs/{id}/view")
+	@GetMapping("/blogs/{id}/view")
 	public String view_blog(@PathVariable Long id)
 	{
         Post viewPost = postServ.findPost(id);
         return "view_blog.jsp";
 	}
 
-	@PostMapping("/blogs/add")
+	@GetMapping("/blogs/add")
+    public String create_blog(HttpSession session)
+    {
+        return "new_blog.jsp";
+    }
+
+    @PostMapping("/blogs/submit")
     //assuming that some validation will be added into the PostServices, leaving this in there. 
 	public String add_blog(@Valid @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description,
     HttpSession session)
