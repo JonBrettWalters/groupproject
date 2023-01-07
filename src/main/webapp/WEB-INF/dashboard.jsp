@@ -22,7 +22,7 @@
 		<h1> <c:out value="${user.firstName}"/> blog</h1>
 		
 		
-		<a href="/logout">logout</a>
+		<a href="/logout">Logout</a>
 		<a href="/blogs/add">+ Add to blog</a>
 		
 		<table class="table">
