@@ -47,7 +47,7 @@
 			<div class="form-row">
 				<form:errors path="description" class="error"/>
 				<form:label for="description" path="description">Description:</form:label>
-				<form:textarea path="Description" class="form-control" value="${post.description}"/>
+				<form:textarea path="description" class="form-control" value="${post.description}"/>
 			</div>
 			
 			<div class="form-row">
