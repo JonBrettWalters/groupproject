@@ -12,7 +12,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Edit blog</title>
-
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css"> <!-- change to match your file/naming structure -->
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
