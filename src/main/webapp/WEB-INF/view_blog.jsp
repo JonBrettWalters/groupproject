@@ -19,23 +19,20 @@
 <body>
 
 	<div class="container">
-		
-		<a href="/logout">logout</a>
 		<a href="/dashboard">Dashboard</a>
+		<table>
 		
-		<div class="container">
-			<h3><span style="color: red;"><c:out value="${viewPost.title}"/></span> 
+			<h3><span class="td"><c:out value="${viewPost.title}"/></span> 
 			<span style="color: rebeccapurple;"><c:out value="${viewPost.subtitle}"/></span> by 
 			<span style="color: darkgreen;"><c:out value="${viewPost.plannedDate}"/></span></h3>
-		</div>
-		
+		</table>
 		<div class="container">
 			
 			<p><c:out value="${viewPost.description}"/></p>
 			<hr />
 		
 		</div>
-		
+	
 	</div>
 
 </body>
