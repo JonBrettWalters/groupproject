@@ -106,23 +106,38 @@ public class MainController
     }
 
     @PostMapping("/blogs/submit")
-    //assuming that some validation will be added into the PostServices, leaving this in there. 
-	public String add_blog(@Valid @ModelAttribute("Post") Post Post, HttpSession session, Model model)
+	public String add_blog(@Valid @ModelAttribute("Post") Post Post, HttpSession session, Model model, BindingResult result)
 	{
         Long userID = (Long) session.getAttribute("user_id");
         User foundUser = userServ.findUser(userID);
         Post created_Post = postServ.createPost(Post, foundUser);
         model.addAttribute("created_Post", created_Post);
-        return "redirect:/dashboard";
+        
+        if(result.hasErrors()) 
+        {
+            return "redirect:/blogs/add";
+        }
+        else
+        {
+            return "redirect:/dashboard";
+        }
 	}
 
     @PostMapping("/blogs/{id}/submit")
     //again assuming some validation will be added into the PostServices
-    public String submit_update(@Valid @ModelAttribute("Post") Post Post, @PathVariable Long id, String description, HttpSession session, Model model)
+    public String submit_update(@Valid @ModelAttribute("Post") Post Post, @PathVariable Long id, String description, HttpSession session, Model model, BindingResult result)
     {
         Post edited_Post = postServ.updatePost(Post);
         model.addAttribute("edited_Post", edited_Post);
-        return "redirect:/dashboard";
+
+        if(result.hasErrors())
+        {
+            return "redirect:/blogs/{id}/edit";
+        }
+        else   
+        {
+            return "redirect:/dashboard";
+        }
     }
 
 	@GetMapping("/blogs/{id}/edit")
