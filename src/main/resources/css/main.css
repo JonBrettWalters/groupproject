@@ -1,0 +1,17 @@
+body {
+	max-width: 1080px;
+	margin: auto;
+}
+tr {
+	border-bottom: 1px solid #ddd;
+	background-color: rgba(150, 212, 212, 0.2);
+}
+td {
+	padding: 16px;
+	display: table-cell;
+	max-width: 0px;
+	text-align: center;
+}
+.float-left {
+	text-align: left;
+}
