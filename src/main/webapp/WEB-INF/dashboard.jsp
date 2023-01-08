@@ -22,7 +22,10 @@
 		<h1> <c:out value="${foundUser.firstName}"/>'s blog</h1>
 		
 		
-		<p><a href="/logout">Logout</a></p>
+		<form action="/logout" method="post">
+            <input type="hidden" name="_method" value="logout">
+            <input type="submit" value="logout">
+		</form>
 		<a href="/blogs/add">+ Add to blog</a>
 		
 		<table class="table">
