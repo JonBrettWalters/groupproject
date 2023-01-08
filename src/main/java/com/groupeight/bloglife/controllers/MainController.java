@@ -83,7 +83,7 @@ public class MainController
     {
         session.invalidate();
         if(model.containsAttribute("counter")) model.asMap().remove("counter");
-        return "redirect:/index";
+        return "redirect:/";
     }
     
     @GetMapping("/dashboard")
