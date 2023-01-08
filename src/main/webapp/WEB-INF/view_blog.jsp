@@ -11,31 +11,28 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/main.css"> <!-- change to match your file/naming structure -->
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css"> <!-- change to match your file/naming structure -->
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 	<div class="container">
-		
-		<a href="/logout">logout</a>
 		<a href="/dashboard">Dashboard</a>
+		<table>
 		
-		<div class="container">
-			<h3><span style="color: red;"><c:out value="${viewPost.title}"/></span> 
+			<h3><span class="td"><c:out value="${viewPost.title}"/></span> 
 			<span style="color: rebeccapurple;"><c:out value="${viewPost.subtitle}"/></span> by 
 			<span style="color: darkgreen;"><c:out value="${viewPost.plannedDate}"/></span></h3>
-		</div>
-		
+		</table>
 		<div class="container">
 			
 			<p><c:out value="${viewPost.description}"/></p>
 			<hr />
 		
 		</div>
-		
+	
 	</div>
 
 </body>
