@@ -39,7 +39,11 @@
 					<td><a href="/blogs/${post.id}/view"><c:out value="${post.title}"/></a></td>
 					<td><c:out value="${post.subtitle}"/></td>
 					<td><c:out value="${post.plannedDate}"/></td>
-					<td> <a href="/blogs/${post.id}/edit"> Edit </a> | <a href="/blogs/${post.id}/delete"> Delete</a>  </td> <!-- delete and edit need to be updated -->
+					<td> <a href="/blogs/${post.id}/edit"> Edit </a> | 
+						<form action="/blogs/${post.id}/delete" method="post">
+							<input type="hidden" name="_method" value="delete">
+							<input type="submit" value="Delete">
+						</form>  </td> 
 				</tr>
 			</c:forEach>
 		
