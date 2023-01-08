@@ -1,7 +1,5 @@
 package com.groupeight.bloglife.controllers;
 
-import java.util.Date;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.validation.BindingResult;
 
 import com.groupeight.bloglife.services.PostServices;
@@ -110,8 +107,7 @@ public class MainController
 
     @PostMapping("/blogs/submit")
     //assuming that some validation will be added into the PostServices, leaving this in there. 
-	public String add_blog(@Valid @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description,
-    HttpSession session, Model model)
+	public String add_blog(@Valid @ModelAttribute("Post") Post Post, HttpSession session, Model model)
 	{
         Long userID = (Long) session.getAttribute("user_id");
         User foundUser = userServ.findUser(userID);
@@ -122,8 +118,7 @@ public class MainController
 
     @PostMapping("/blogs/{id}/submit")
     //again assuming some validation will be added into the PostServices
-    public String submit_update(@Valid @ModelAttribute("Post") Post Post, @PathVariable Long id, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, 
-    @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description, HttpSession session, Model model)
+    public String submit_update(@Valid @ModelAttribute("Post") Post Post, @PathVariable Long id, String description, HttpSession session, Model model)
     {
         Post edited_Post = postServ.updatePost(Post);
         model.addAttribute("edited_Post", edited_Post);
