@@ -41,8 +41,8 @@ public class MainController
     }
     
     @PostMapping("/register")
-    public String register(@Valid @RequestParam(value="firstName") String firstName, @RequestParam(value="lastName") String lastName, @RequestParam(value="email")String email, @RequestParam(value="password")String password,
-	@ModelAttribute("User") User User, BindingResult result, Model model, HttpSession session) 
+    public String register(@Valid @ModelAttribute("User") User User, @RequestParam(value="firstName") String firstName, @RequestParam(value="lastName") String lastName, @RequestParam(value="email")String email, @RequestParam(value="password")String password,
+	BindingResult result, Model model, HttpSession session) 
     {
         User created_User = userServ.createUser(User, result);
 
@@ -123,7 +123,7 @@ public class MainController
 
     @PostMapping("/blogs/{id}/submit")
     //again assuming some validation will be added into the PostServices
-    public String submit_update(@Valid @PathVariable Long id, @ModelAttribute("Post") Post Post, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, 
+    public String submit_update(@Valid @ModelAttribute("Post") Post Post, @PathVariable Long id, @RequestParam(value="title") String title, @RequestParam(value="subtitle") String subtitle, 
     @RequestParam(value="plannedDate") Date plannedDate, @RequestParam(value="description") String description, HttpSession session, Model model)
     {
         Post edited_Post = postServ.updatePost(Post);
