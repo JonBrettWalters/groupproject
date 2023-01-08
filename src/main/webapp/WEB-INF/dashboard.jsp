@@ -19,7 +19,7 @@
 <body>
 
 	<div class="container">
-		<h1> <c:out value="${user.firstName}"/> blog</h1>
+		<h1> <c:out value="${foundUser.firstName}"/>'s blog</h1>
 		
 		
 		<a href="/logout">Logout</a>
