@@ -19,10 +19,13 @@
 <body>
 
 	<div class="container">
-		<h1> <c:out value="${user.firstName}"/> blog</h1>
+		<h1> <c:out value="${foundUser.firstName}"/>'s blog</h1>
 		
 		
-		<a href="/logout">Logout</a>
+		<form action="/logout" method="post">
+            <input type="hidden" name="_method" value="logout">
+            <input type="submit" value="logout">
+		</form>
 		<a href="/blogs/add">+ Add to blog</a>
 		
 		<table class="table">
