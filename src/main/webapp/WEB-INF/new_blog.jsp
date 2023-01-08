@@ -26,30 +26,30 @@
 	<div class="container">
 		<form:form action="/blogs/submit" modelAttribute="post" class="form" method="post"> <!-- form needs to be updated -->
 		
-			<div class="form-row">
+			<div class="float-left">
 				<form:errors path="title" class="error"/>
 				<form:label for="title" path="title">Title:</form:label>
 				<form:input type="text" path="title" class="form-control"/>
 			</div>
 			
-			<div class="form-row">
+			<div class="float-left">
 				<form:errors path="subtitle" class="error"/>
 				<form:label for="subtitle" path="subtitle">Subtitle:</form:label>
 				<form:input type="text" path="subtitle" class="form-control"/>
 			</div>
 			
-			<div class="form-row">
+			<div class="float-left">
 				<form:errors path="plannedDate" class="error"/>
 				<form:label for="plannedDate" path="plannedDate">Date:</form:label>
 				<form:input type="date" min="2018-01-01" max="2199-12-31" path="plannedDate" class="form-control"/>
 			</div>
-			<div class="form-row">
+			<div class="float-left">
 				<form:errors path="description" class="error"/>
 				<form:label for="description" path="description">Description:</form:label>
 				<form:textarea path="description" class="form-control"/>
 			</div>
 			
-			<div class="form-row">
+			<div class="float-left">
 				<form:errors path="user" class="error"/>
 				<form:input type="hidden" path="user" value="${user.id}" class="form-control"/>
 			</div>

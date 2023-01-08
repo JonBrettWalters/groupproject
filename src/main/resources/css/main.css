@@ -15,3 +15,6 @@ td {
 .float-left {
 	text-align: left;
 }
+.input {
+	width: 100%;
+}
