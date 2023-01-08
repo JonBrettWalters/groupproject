@@ -49,7 +49,7 @@ public class MainController
         if(result.hasErrors()) 
         {
             model.addAttribute("LoginUser", new LoginUser());
-            return "index.jsp";
+            return "redirect:/";
         }
         else
         {
