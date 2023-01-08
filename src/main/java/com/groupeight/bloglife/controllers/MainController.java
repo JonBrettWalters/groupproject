@@ -41,20 +41,19 @@ public class MainController
     }
     
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("User") User User, @RequestParam(value="firstName") String firstName, @RequestParam(value="lastName") String lastName, @RequestParam(value="email")String email, @RequestParam(value="password")String password,
-	BindingResult result, Model model, HttpSession session) 
+    public String register(@Valid @ModelAttribute("User") User User, BindingResult result, Model model, HttpSession session) 
     {
         User created_User = userServ.createUser(User, result);
 
         if(result.hasErrors()) 
         {
             model.addAttribute("LoginUser", new LoginUser());
-            return "redirect:/";
+            return "index.jsp";
         }
         else
         {
             session.setAttribute("user_id", created_User.getId());
-            session.setAttribute(firstName, created_User);
+            session.setAttribute("firstName", created_User.getFirstName());
         }
         return "redirect:/dashboard";
     }
@@ -68,7 +67,7 @@ public class MainController
         if(result.hasErrors()) 
         {
             model.addAttribute("LoginUser", new LoginUser());
-            return "redirect:/";
+            return "index.jsp";
         }
         else
         {
@@ -148,3 +147,4 @@ public class MainController
 
 
 }
+// @RequestParam(value="firstName") String firstName, @RequestParam(value="lastName") String lastName, @RequestParam(value="email")String email, @RequestParam(value="password")String password,
