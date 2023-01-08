@@ -57,7 +57,7 @@ public class MainController
 
     
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("LoginUser") LoginUser LoginUser, BindingResult result, Model model, HttpSession session) 
+    public String login(@Valid @ModelAttribute("LoginUser") LoginUser LoginUser, @Valid @ModelAttribute("User") User User, BindingResult result, Model model, HttpSession session) 
     {
         User created_User = userServ.login(LoginUser, result);
         
