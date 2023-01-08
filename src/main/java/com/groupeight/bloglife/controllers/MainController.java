@@ -110,8 +110,6 @@ public class MainController
 	{
         Long userID = (Long) session.getAttribute("user_id");
         User foundUser = userServ.findUser(userID);
-
-        // model.addAttribute("created_Post", created_Post);
         
         if(result.hasErrors()) 
         {
@@ -119,8 +117,7 @@ public class MainController
         }
         else
         {
-        	System.out.println("Creating Post.");
-            Post created_Post = postServ.createPost(Post, foundUser);
+            postServ.createPost(Post, foundUser);
             return "redirect:/dashboard";
         }
 	}
@@ -129,15 +126,13 @@ public class MainController
     //again assuming some validation will be added into the PostServices
     public String submit_update(@Valid @ModelAttribute("editPost") Post Post, BindingResult result, @PathVariable Long id, String description, HttpSession session, Model model)
     {
-        // model.addAttribute("edited_Post", edited_Post);
-
         if(result.hasErrors())
         {
             return "edit_blog.jsp";
         }
         else   
         {
-        	Post edited_Post = postServ.updatePost(Post);
+        	postServ.updatePost(Post);
             return "redirect:/dashboard";
         }
     }
