@@ -39,7 +39,7 @@
 					<td><a href="/blogs/${post.id}/view"><c:out value="${post.title}"/></a></td>
 					<td><c:out value="${post.subtitle}"/></td>
 					<td><c:out value="${post.plannedDate}"/></td>
-					<td> <a href="/blogs/${post.id}/edit"> Edit </a> | 
+					<td> <button><a href="/blogs/${post.id}/edit"> Edit </a> </button> | 
 						<form action="/blogs/${post.id}/delete" method="post">
 							<input type="hidden" name="_method" value="delete">
 							<input type="submit" value="Delete">
