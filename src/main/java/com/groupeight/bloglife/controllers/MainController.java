@@ -64,7 +64,6 @@ public class MainController
         if(result.hasErrors()) 
         {
             model.addAttribute("User", new User());
-            model.addAttribute("LoginUser", new LoginUser());
             return "index.jsp";
         }
         else
@@ -101,42 +100,44 @@ public class MainController
 	}
 
 	@GetMapping("/blogs/add")
-    public String create_blog(HttpSession session, Model model, @ModelAttribute("post") Post post)
+    public String create_blog(HttpSession session, Model model, @ModelAttribute("Post") Post post)
     {
         return "new_blog.jsp";
     }
 
     @PostMapping("/blogs/submit")
-	public String add_blog(@Valid @ModelAttribute("Post") Post Post, HttpSession session, Model model, BindingResult result)
+	public String add_blog(@Valid @ModelAttribute("Post") Post Post, BindingResult result, HttpSession session, Model model)
 	{
         Long userID = (Long) session.getAttribute("user_id");
         User foundUser = userServ.findUser(userID);
-        Post created_Post = postServ.createPost(Post, foundUser);
-        model.addAttribute("created_Post", created_Post);
+
+        // model.addAttribute("created_Post", created_Post);
         
         if(result.hasErrors()) 
         {
-            return "redirect:/blogs/add";
+            return "new_blog.jsp";
         }
         else
         {
+        	System.out.println("Creating Post.");
+            Post created_Post = postServ.createPost(Post, foundUser);
             return "redirect:/dashboard";
         }
 	}
 
     @PostMapping("/blogs/{id}/submit")
     //again assuming some validation will be added into the PostServices
-    public String submit_update(@Valid @ModelAttribute("Post") Post Post, @PathVariable Long id, String description, HttpSession session, Model model, BindingResult result)
+    public String submit_update(@Valid @ModelAttribute("editPost") Post Post, BindingResult result, @PathVariable Long id, String description, HttpSession session, Model model)
     {
-        Post edited_Post = postServ.updatePost(Post);
-        model.addAttribute("edited_Post", edited_Post);
+        // model.addAttribute("edited_Post", edited_Post);
 
         if(result.hasErrors())
         {
-            return "redirect:/blogs/{id}/edit";
+            return "edit_blog.jsp";
         }
         else   
         {
+        	Post edited_Post = postServ.updatePost(Post);
             return "redirect:/dashboard";
         }
     }
